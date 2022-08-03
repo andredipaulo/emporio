@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('custo', 19, 2);
             $table->decimal('preco', 19, 2);
             $table->integer('quantidade');
-            $table->foreign('fornecedor_id')->references('id')->on('fornecedores');
+            $table->foreign('fornecedor_id')->references('id')->on('fornecedors');
             $table->timestamps();
         });
     }
