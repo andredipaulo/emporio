@@ -3,22 +3,22 @@
 @section('title', 'Fornecedor')
 
 @section('content_header')
-    <h1>Novo Fornecedor</h1>
+    <h1>Atualizar Fornecedor</h1>
 @stop
 
 @section('content')
-    <p>Registre um novo fornecedor.</p>
+    <p>Atualize o fornecedor.</p>
 
-    <form action="{{route('fornecedor/registra')}}" method="post">
+    <form action="{{route( 'fornecedor/alterar', ['id' => $fornecedor->id] )}}" method="post">
         @csrf
         <label for="">Nome</label> <br />
-        <input type="text" name="nome"><br />
+        <input type="text" name="nome" value="{{ $fornecedor->nome }}"><br />
         <label for="">DDD</label> <br />
-        <input type="text" name="ddd"><br />
+        <input type="text" name="ddd" value="{{ $fornecedor->ddd }}"><br />
         <label for="">Telefone</label> <br />
-        <input type="text" name="telefone"><br />
+        <input type="text" name="telefone" value="{{ $fornecedor->telefone }}"><br />
         <label for="">E-mail</label> <br />
-        <input type="text" name="email"><br />
+        <input type="text" name="email" value="{{ $fornecedor->email }}"><br />
         <button>Salvar</button>
     </form>
 @stop
@@ -30,3 +30,4 @@
 @section('js')
     <script> console.log('Hi!'); </script>
 @stop
+
