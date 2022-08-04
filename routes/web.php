@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 #FORNECEDORES
+Route::get('/fornecedor', [App\Http\Controllers\FornecedorController::class, 'read'])->name('fornecedor/read');
 Route::get('/fornecedor/novo', [App\Http\Controllers\FornecedorController::class, 'create'])->name('fornecedor/novo');
 Route::post('/fornecedor/novo', [App\Http\Controllers\FornecedorController::class, 'store'])->name('fornecedor/registra');
 Route::get('/fornecedor/ver/{id}', [App\Http\Controllers\FornecedorController::class, 'show'])->name('fornecedor/show');
