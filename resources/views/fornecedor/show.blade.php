@@ -9,15 +9,19 @@
 @section('content')
     <p>Visualize os dados do Fornecedor.</p>
 
-    <label for="">Nome</label> <br />
-    <input type="text" name="nome" value="{{ $fornecedor->nome }}"><br />
-    <label for="">DDD</label> <br />
-    <input type="text" name="ddd" value="{{ $fornecedor->ddd }}"><br />
-    <label for="">Telefone</label> <br />
-    <input type="text" name="telefone" value="{{ $fornecedor->telefone }}"><br />
-    <label for="">E-mail</label> <br />
-    <input type="text" name="email" value="{{ $fornecedor->email }}"><br />
-    <button>Voltar</button>
+    <label for="">Nome</label> <br/>
+    <input type="text" name="nome" value="{{ $fornecedor->nome }}" readonly ><br/>
+    <label for="">DDD</label> <br/>
+    <input type="text" name="ddd" value="{{ $fornecedor->ddd }}" readonly ><br/>
+    <label for="">Telefone</label> <br/>
+    <input type="text" name="telefone" value="{{ $fornecedor->telefone }}" readonly ><br/>
+    <label for="">E-mail</label> <br/>
+    <input type="text" name="email" value="{{ $fornecedor->email }}" readonly ><br/>
+
+    <a  href="{{ route('fornecedor/read') }}">
+        <i class="fa fa-arrow-circle-o-left"></i>
+        <button>Voltar</button>
+    </a>
 @stop
 
 @section('css')
