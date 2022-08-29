@@ -3,8 +3,21 @@
 @section('title', 'Fornecedor')
 
 @section('content_header')
-    <h1>Lista de  Fornecedor</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Lista de  Fornecedores</h1>
+        </div>
 
+        <div class="col-md-6">
+            <div class="pull-right" style="float: right">
+                <a href="/fornecedor/new" title="add new fornecedor" class="btn btn-success show_modal_form">
+                    <i class="fa fa-plus-circle"></i>
+                    Adicionar
+                </a>
+            </div>
+        </div>
+
+    </div>
 @stop
 
 @section('content')
@@ -12,24 +25,23 @@
         {!!
             grid_view([
                 'dataProvider' => $dataProvider,
-
                 'useFilters' => false,
                 'paginatorOptions' => [ // Here you can set some options of paginator Illuminate\Pagination\LengthAwarePaginator, used in a package.
                     'pageName' => 'p'
                 ],
                 'title' => 'Fornecedores', // It can be empty ''
-                'rowsPerPage' => 5, // The number of rows in one page. By default 10.
+
+                'rowsPerPage' => 10, // The number of rows in one page. By default 10.
                 'strictFilters' => false, // If true, then a searching by filters will be strict, using an equal '=' SQL operator instead of 'like'.
                 'rowsFormAction' => '/fornecedor/excluir', // Route url to send slected checkbox items for deleting rows, for example.
                 'useSendButtonAnyway' => false, // If true, even if there are no checkbox column, the main send button will be displayed.
                 'searchButtonLabel' => 'Find',
-
                 'columnFields' => [
                     [   'attribute' => 'id', // REQUIRED if value is not defined. Attribute name to get row column data.
                         'label' => 'ID', // Column label.
                         // 'filter' => false, // If false, then column will be without a search filter form field.,
                         'htmlAttributes' => [
-                            'width' => '4%' // Width of table column.
+                            'width' => '3%' // Width of table column.
                         ]
                     ],
                     [   'attribute' => 'nome',
@@ -88,27 +100,16 @@
                         ],
                         'actionTypes' => [
                             'view' => function ($data) {
-                                return '/fornecedor/ver/' . $data->id;
+                                return '/fornecedor/show/' . $data->id;
                             },
 
                             'edit' => function ($data) {
-                                return '/fornecedor/editar/' . $data->id;
+                                return '/fornecedor/edit/' . $data->id;
                             },
-                            /*
-                            [   'class' => Itstructure\GridView\Actions\Edit::class,
-                                'url' => function ($data) {
-                                    return '/fornecedor/editar/' . $data->id;
-                                },
-                                'htmlAttributes' => [ // Optional
-                                    'target' => '_blank',
-                                    'style' => 'color: white; font-size: 16px;',
-                                ]
-                            ],
-                            */
                             [
                                 'class' => Itstructure\GridView\Actions\Delete::class,
                                 'url' => function ($data) { // Optional
-                                    return '/fornecedor/excluir/' . $data->id;
+                                    return '/fornecedor/delete/' . $data->id;
                                 },
                                 'htmlAttributes' => [ // Optional
                                     'target' => '_blank',

@@ -23,10 +23,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 #FORNECEDORES
 Route::get('/fornecedor', [App\Http\Controllers\FornecedorController::class, 'read'])->name('fornecedor/read');
-Route::get('/fornecedor/novo', [App\Http\Controllers\FornecedorController::class, 'create'])->name('fornecedor/novo');
-Route::post('/fornecedor/novo', [App\Http\Controllers\FornecedorController::class, 'store'])->name('fornecedor/registra');
-Route::get('/fornecedor/ver/{id}', [App\Http\Controllers\FornecedorController::class, 'show'])->name('fornecedor/show');
-Route::get('/fornecedor/editar/{id}', [App\Http\Controllers\FornecedorController::class, 'edit'])->name('fornecedor/editar');
-Route::post('/fornecedor/editar/{id}', [App\Http\Controllers\FornecedorController::class, 'update'])->name('fornecedor/alterar');
-Route::get('/fornecedor/excluir/{id}', [App\Http\Controllers\FornecedorController::class, 'delete'])->name('fornecedor/excluir');
-Route::post('/fornecedor/excluir/{id}', [App\Http\Controllers\FornecedorController::class, 'destroy'])->name('fornecedor/apagar');
+Route::get('/fornecedor/show/{id}', [App\Http\Controllers\FornecedorController::class, 'show'])->name('fornecedor/show');
+
+Route::get('/fornecedor/edit/{id}', [App\Http\Controllers\FornecedorController::class, 'edit'])->name('fornecedor/edit');
+Route::post('/fornecedor/update/{id}', [App\Http\Controllers\FornecedorController::class, 'update'])->name('fornecedor/update');
+
+Route::get('/fornecedor/create', [App\Http\Controllers\FornecedorController::class, 'create'])->name('fornecedor/create');
+Route::post('/fornecedor/save', [App\Http\Controllers\FornecedorController::class, 'save'])->name('fornecedor/save');
+
+Route::get('/fornecedor/delete/{id}', [App\Http\Controllers\FornecedorController::class, 'delete'])->name('fornecedor/delete');

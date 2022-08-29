@@ -247,9 +247,9 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
+            'text'        => 'Dashboard',
+            'url'         => '/home',
+            'icon'        => 'fas fa-tachometer-alt',
             'label'       => 4,
             'label_color' => 'success',
         ],
@@ -265,14 +265,24 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Cadastro',
+            'icon'    => 'fas fa-address-card',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Fornecedor',
+                    'url'  => '/fornecedor/',
+                    'icon'    => 'fas fa-truck',
                 ],
                 [
+                    'text' => 'Produto',
+                    'url'  => '#',
+                    'icon'    => 'fa fa-shopping-bag',
+                ],
+                [
+                    'text' => 'Usuário',
+                    'url'  => '#',
+                ],
+                /*[
                     'text'    => 'level_one',
                     'url'     => '#',
                     'submenu' => [
@@ -296,10 +306,7 @@ return [
                         ],
                     ],
                 ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
+                */
             ],
         ],
         ['header' => 'labels'],

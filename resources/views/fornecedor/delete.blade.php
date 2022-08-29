@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <p>Excluir o fornecedor.</p>
+    <p>Excluir o Fornecedor.</p>
 
     <form action="{{route( 'fornecedor/apagar', ['id' => $fornecedor->id] )}}" method="post">
         @csrf

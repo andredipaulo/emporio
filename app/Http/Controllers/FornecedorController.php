@@ -10,7 +10,47 @@ use phpDocumentor\Reflection\Location;
 
 class FornecedorController extends Controller
 {
+    public function create(Request $request){
+        return view('fornecedor.create');
+    }
+
     public function read(){
+        $fornecedores = new EloquentDataProvider(Fornecedor::query());
+        return view('fornecedor.read', [
+            'dataProvider' => $fornecedores
+        ]);
+    }
+
+    public function update(Request $request, $id){
+        if (($request->nome != "") &&
+            ($request->ddd != "") &&
+            ($request->telefone != "") &&
+            ($request->email != "") ) {
+
+            $fornecedor = Fornecedor::findOrFail($id);
+            $fornecedor->update([
+                'nome' => $request->nome,
+                'ddd' => $request->ddd,
+                'telefone' => $request->telefone,
+                'email' => $request->email,
+            ]);
+
+            $fornecedores = new EloquentDataProvider(Fornecedor::query());
+            return view('fornecedor.read', [
+                'dataProvider' => $fornecedores
+            ]);
+
+        }else {
+            $fornecedor = Fornecedor::findOrFail($id);
+            return view('fornecedor.show', ['fornecedor' => $fornecedor]);
+        }
+
+    }
+
+    public function delete($id)
+    {
+        $fornecedor = Fornecedor::findOrfail($id);
+        $fornecedor->delete();
 
         $fornecedores = new EloquentDataProvider(Fornecedor::query());
         return view('fornecedor.read', [
@@ -18,21 +58,9 @@ class FornecedorController extends Controller
         ]);
     }
 
-    public function create(){
-        return view('fornecedor.create');
-    }
-
-    public function store(Request $request){
-        Fornecedor::create([
-           'nome' => $request->nome,
-           'ddd' => $request->ddd,
-           'telefone' => $request->telefone,
-           'email' => $request->email,
-        ]);
-
-        return "fornecedor criado com sucesso!";
-    }
-
+    /**
+    **
+    */
     public function show($id){
         $fornecedor = Fornecedor::findOrFail($id);
         return view('fornecedor.show', ['fornecedor' => $fornecedor]);
@@ -44,28 +72,28 @@ class FornecedorController extends Controller
         return view('fornecedor.edit', ['fornecedor' => $fornecedor]);
     }
 
-    public function update(Request $request, $id){
-        $fornecedor = Fornecedor::findOrFail($id);
-        $fornecedor->update([
-            'nome' => $request->nome,
-            'ddd' => $request->ddd,
-            'telefone' => $request->telefone,
-            'email' => $request->email,
-        ]);
+    public function save(Request $request){
+        if (($request->nome != "") &&
+            ($request->ddd != "") &&
+            ($request->telefone != "") &&
+            ($request->email != "") ) {
 
-        return back();
-    }
+            Fornecedor::create([
+                'nome' => $request->nome,
+                'ddd' => $request->ddd,
+                'telefone' => $request->telefone,
+                'email' => $request->email,
+            ]);
 
-    public function delete($id)
-    {
-        $fornecedor = Fornecedor::findOrFail($id);
-        return view('fornecedor.delete', ['fornecedor' => $fornecedor]);
-    }
+            $fornecedores = new EloquentDataProvider(Fornecedor::query());
 
-    public function destroy($id){
-        $fornecedor = Fornecedor::findOrfail($id);
-        $fornecedor->delete();
+            return view('fornecedor.read', [
+                'dataProvider' => $fornecedores
+            ]);
 
-        return "Registro excluído com sucesso!";
+        }else{
+            echo  "<script>alert('Campos não foram preenchidos, corretamente');</script>";
+            return view('fornecedor.create');
+        }
     }
 }
